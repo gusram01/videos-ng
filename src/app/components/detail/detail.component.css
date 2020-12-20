@@ -1,0 +1,25 @@
+.detail__container {
+  position: relative;
+  min-width: 220px;
+  min-height: 300px;
+  width: 50vw;
+  height: 50vh;
+}
+.detail__close-dialog {
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  z-index: 100;
+}
+.detail__spinner {
+  margin: 10px auto;
+}
+.detail__avatar {
+  cursor: pointer;
+}
+.detail__fav {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

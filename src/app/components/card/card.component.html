@@ -2,9 +2,7 @@
   class="card"
   [ngStyle]="{
     'background-size': 'cover',
-    'background-image': !movie!.backdrop_path
-      ? '/assets/no-image.jpg'
-      : 'url(https://image.tmdb.org/t/p/w500' + movie!.backdrop_path + ')'
+    'background-image': movie!.backdrop_path | backdrop
   }"
 >
   <mat-card-header>
@@ -17,8 +15,8 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <a mat-button color="accent" [routerLink]="['/movie', movie!.id]">
+    <button mat-button color="accent" (click)="openDetails(movie!.id)">
       more details...
-    </a>
+    </button>
   </mat-card-actions>
 </mat-card>

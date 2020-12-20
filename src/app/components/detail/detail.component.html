@@ -1,0 +1,38 @@
+<div class="detail__container mat-elevation-z6">
+  <button
+    mat-icon-button
+    (click)="close()"
+    color="accent"
+    class="detail__close-dialog"
+  >
+    <fa-icon [icon]="faTimes"></fa-icon>
+  </button>
+  <mat-spinner *ngIf="loading" class="detail__spinner"></mat-spinner>
+
+  <mat-card *ngIf="movie">
+    <mat-card-header>
+      <div mat-card-avatar class="detail__avatar">
+        <mat-icon class="detail__fav">favorite_border</mat-icon>
+      </div>
+      <mat-card-title>
+        {{ movie!.title }}
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{ movie!.release_date | date: "yyyy" }}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="movie!.poster_path | poster" />
+
+    <mat-card-content>
+      <p>
+        {{ movie!.overview }}
+      </p>
+    </mat-card-content>
+
+    <mat-card-footer *ngIf="cast">
+      <small>
+        {{ cast!.join(", ") }}
+      </small>
+    </mat-card-footer>
+  </mat-card>
+</div>
