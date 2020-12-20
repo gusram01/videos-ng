@@ -1,0 +1,24 @@
+<mat-card
+  class="card"
+  [ngStyle]="{
+    'background-size': 'cover',
+    'background-image': !movie!.backdrop_path
+      ? '/assets/no-image.jpg'
+      : 'url(https://image.tmdb.org/t/p/w500' + movie!.backdrop_path + ')'
+  }"
+>
+  <mat-card-header>
+    <mat-card-title> {{ movie?.title }} </mat-card-title>
+    <mat-card-subtitle> {{ movie?.vote_average }} </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    {{ movie?.overview | slice: 0:50 }}
+  </mat-card-content>
+
+  <mat-card-actions>
+    <a mat-button color="accent" [routerLink]="['/movie', movie!.id]">
+      more details...
+    </a>
+  </mat-card-actions>
+</mat-card>

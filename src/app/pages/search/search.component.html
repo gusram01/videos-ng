@@ -1,0 +1,6 @@
+<div class="search__container">
+  <app-search-bar (sendTitle)="getMovies($event)"></app-search-bar>
+  <div class="movies__container" *ngIf="movies">
+    <app-card [movie]="movie" *ngFor="let movie of movies"> </app-card>
+  </div>
+</div>

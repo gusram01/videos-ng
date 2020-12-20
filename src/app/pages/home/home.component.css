@@ -1,0 +1,10 @@
+.home__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  height: 90vh;
+  min-height: 400px;
+  padding: 2rem 1rem;
+}
