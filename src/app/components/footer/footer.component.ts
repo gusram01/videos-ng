@@ -9,8 +9,12 @@ import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
 export class FooterComponent implements OnInit {
   faTwitter = faTwitter;
   faGithub = faGithub;
+  legend: string;
 
-  constructor() {}
+  constructor() {
+    const year = new Date().getFullYear();
+    this.legend = `Gus Ramírez ${year}®`;
+  }
 
   ngOnInit(): void {}
 }

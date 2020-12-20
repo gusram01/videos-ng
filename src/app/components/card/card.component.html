@@ -6,6 +6,10 @@
   }"
 >
   <mat-card-header>
+    <div mat-card-avatar>
+      <app-fav [id]="movie!.id.toString()"></app-fav>
+    </div>
+
     <mat-card-title> {{ movie?.title }} </mat-card-title>
     <mat-card-subtitle> {{ movie?.vote_average }} </mat-card-subtitle>
   </mat-card-header>

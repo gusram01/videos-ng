@@ -5,6 +5,7 @@ import { MoviesService } from '../../services/movies.service';
 import { MovieDetailResponse } from '../../models/movieDetailsResponse';
 import { zip } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { StoreService } from '../../services/store.service';
 
 @Component({
   selector: 'app-detail',

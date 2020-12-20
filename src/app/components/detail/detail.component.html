@@ -12,7 +12,7 @@
   <mat-card *ngIf="movie">
     <mat-card-header>
       <div mat-card-avatar class="detail__avatar">
-        <mat-icon class="detail__fav">favorite_border</mat-icon>
+        <app-fav [id]="movie!.id.toString()"></app-fav>
       </div>
       <mat-card-title>
         {{ movie!.title }}
