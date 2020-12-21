@@ -1,3 +1,5 @@
-<mat-icon (click)="change()" [color]="fav ? 'warn' : ''" class="fav">
-  {{ fav ? "favorite" : "favorite_border" }}
-</mat-icon>
+<button mat-icon-button (click)="change()">
+  <mat-icon [color]="fav ? 'warn' : ''" class="fav">
+    {{ fav ? "favorite" : "favorite_border" }}
+  </mat-icon>
+</button>

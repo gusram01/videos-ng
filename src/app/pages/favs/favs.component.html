@@ -1,3 +1,4 @@
+<!--  Toolbar  -->
 <mat-toolbar>
   <button mat-button color="accent" (click)="back()">
     <mat-icon>keyboard_arrow_left</mat-icon>
@@ -7,7 +8,10 @@
   <span class="separator"></span>
   <button mat-stroked-button (click)="logout()" color="warn">Logout</button>
 </mat-toolbar>
+
+<!--  Card-details Container  -->
 <div *ngIf="movies" class="card__container">
+  <!--  Card  -->
   <mat-card *ngFor="let movie of movies" class="card">
     <mat-card-header>
       <mat-card-title>
@@ -16,7 +20,16 @@
       <mat-card-subtitle>
         {{ movie!.release_date | date: "yyyy" }}
       </mat-card-subtitle>
+
+      <!--  button delete fav  -->
+      <div mat-card-avatar>
+        <button mat-icon-button color="primary" (click)="deleteFav(movie)">
+          <mat-icon class="card__delete">delete</mat-icon>
+        </button>
+      </div>
     </mat-card-header>
+
+    <!--  Poster Image  -->
     <img mat-card-image [src]="movie!.poster_path | poster" />
 
     <mat-card-content>

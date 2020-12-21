@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { Movies } from '../../models/movieResponse';
 import { Cast } from '../../models/movieCreditsResponse';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './favs.component.html',
   styleUrls: ['./favs.component.css'],
 })
-export class FavsComponent implements OnInit {
+export class FavsComponent {
   movies: Partial<Movies>[] | undefined;
   cast: Cast[] = [];
 
@@ -24,13 +24,18 @@ export class FavsComponent implements OnInit {
     this.movies = this.favsService.storedData();
   }
 
-  ngOnInit(): void {}
-
   back() {
     this.location.back();
   }
   logout() {
     this.login.clean();
     this.router.navigateByUrl('/');
+  }
+  deleteFav(movie: Partial<Movies>) {
+    this.favsService.changeFav(movie);
+    this.movies = this.favsService.storedData();
+    if (this.movies && this.movies.length === 0) {
+      this.location.back();
+    }
   }
 }
