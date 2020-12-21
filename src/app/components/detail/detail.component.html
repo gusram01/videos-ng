@@ -1,4 +1,4 @@
-<div class="detail__container mat-elevation-z6">
+<div class="detail__container">
   <button
     mat-icon-button
     (click)="close()"
@@ -9,7 +9,7 @@
   </button>
   <mat-spinner *ngIf="loading" class="detail__spinner"></mat-spinner>
 
-  <mat-card *ngIf="movie">
+  <mat-card *ngIf="movie" class="detail__card mat-elevation-z6">
     <mat-card-header>
       <div mat-card-avatar>
         <app-fav [movie]="movie"></app-fav>

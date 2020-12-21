@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import { Movies } from '../../models/movieResponse';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { DetailComponent } from '../../components/detail/detail.component';
 import { FavsService } from '../../services/favs.service';
@@ -20,8 +20,7 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private movieService: MoviesService,
-    private details: MatDialog,
-    private favsService: FavsService
+    private details: MatDialog
   ) {}
 
   ngOnInit(): void {}

@@ -1,5 +1,14 @@
-.card {
+.mat-card.card {
   margin: 1rem 0;
   break-inside: avoid;
   page-break-inside: avoid;
+}
+.card__inside {
+  opacity: 0;
+  border-radius: 8px;
+}
+.card__inside:hover {
+  opacity: 1;
+  transition: opacity 150ms ease-in;
+  background: rgba(0, 0, 0, 0.75);
 }

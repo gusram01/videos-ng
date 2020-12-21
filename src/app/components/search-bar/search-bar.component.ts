@@ -1,7 +1,9 @@
-import { Component, EventEmitter, HostListener, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { EmptyFavsComponent } from '../empty-favs/empty-favs.component';
 
 @Component({
   selector: 'app-search-bar',
@@ -10,25 +12,18 @@ import { Router } from '@angular/router';
 })
 export class SearchBarComponent {
   search: FormGroup;
-  posY = 0;
-  hide = false;
+
   @Output() sendTitle: EventEmitter<string> = new EventEmitter();
 
   constructor(
     private fb: FormBuilder,
     private login: LoginService,
-    private router: Router
+    private router: Router,
+    private emptyFavs: MatDialog
   ) {
     this.search = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
     });
-  }
-
-  @HostListener('window:scroll')
-  viewScroll() {
-    this.posY < window.scrollY
-      ? ((this.hide = true), (this.posY = window.scrollY - 1))
-      : ((this.hide = false), (this.posY = window.scrollY));
   }
 
   onSubmit() {
@@ -36,6 +31,19 @@ export class SearchBarComponent {
       return;
     }
     this.sendTitle.emit(this.search.value.title);
+  }
+
+  favs() {
+    const data = sessionStorage.getItem('ngMov13User');
+    if (!data || JSON.parse(data).movies < 1) {
+      const dialog = this.emptyFavs.open(EmptyFavsComponent, {
+        minWidth: '220px',
+        minHeight: '300px',
+      });
+      return;
+    }
+
+    this.router.navigateByUrl('/favs');
   }
 
   logout() {

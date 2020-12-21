@@ -5,6 +5,12 @@
   width: 50vw;
   height: 50vh;
 }
+
+.detail__card {
+  margin: 0.5rem 0;
+  padding-bottom: 3rem;
+}
+
 .detail__close-dialog {
   position: absolute;
   right: -5px;
@@ -18,6 +24,5 @@
 .detail__fav {
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }

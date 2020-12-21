@@ -21,6 +21,7 @@ import { PosterPipe } from './pipes/poster.pipe';
 import { BackdropPipe } from './pipes/backdrop.pipe';
 import { FavComponent } from './components/fav/fav.component';
 import { FavsComponent } from './pages/favs/favs.component';
+import { EmptyFavsComponent } from './components/empty-favs/empty-favs.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { FavsComponent } from './pages/favs/favs.component';
     BackdropPipe,
     FavComponent,
     FavsComponent,
+    EmptyFavsComponent,
   ],
   imports: [
     BrowserModule,

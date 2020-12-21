@@ -20,6 +20,15 @@ export class FavsService {
     console.log('killed');
   }
 
+  storedData() {
+    const data = sessionStorage.getItem('ngMov13User');
+    if (!data) {
+      return [];
+    }
+    const user: Users = JSON.parse(data);
+    return user.movies;
+  }
+
   initializesFav(id: number) {
     const data = sessionStorage.getItem('ngMov13User');
     if (!data) {

@@ -4,12 +4,7 @@
   padding: 1rem;
   justify-content: center;
   align-items: center;
-  transition: transform 300ms ease-in-out;
 }
 .search-bar__actions {
   padding-bottom: 21.5px;
-}
-
-.hide {
-  transform: translateY(-200%);
 }

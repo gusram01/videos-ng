@@ -1,26 +1,38 @@
-<mat-card *ngFor="let movie of movies">
-  <mat-card-header>
-    <div mat-card-avatar>
-      <app-fav [id]="movie"></app-fav>
-    </div>
-    <mat-card-title>
-      {{ movie!.title }}
-    </mat-card-title>
-    <mat-card-subtitle>
-      {{ movie!.release_date | date: "yyyy" }}
-    </mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image [src]="movie!.poster_path | poster" />
+<mat-toolbar>
+  <button mat-button color="accent" (click)="back()">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+    <span class="btn-txt">Back</span>
+  </button>
+  <h1>Favorites</h1>
+  <span class="separator"></span>
+  <button mat-stroked-button (click)="logout()" color="warn">Logout</button>
+</mat-toolbar>
+<div *ngIf="movies" class="card__container">
+  <mat-card *ngFor="let movie of movies" class="card">
+    <mat-card-header>
+      <mat-card-title>
+        {{ movie!.title }}
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{ movie!.release_date | date: "yyyy" }}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="movie!.poster_path | poster" />
 
-  <mat-card-content>
-    <p>
-      {{ movie!.overview }}
-    </p>
-  </mat-card-content>
+    <mat-card-content>
+      <h4>{{ movie!.vote_average }}</h4>
+      <h5>
+        Language: <em> {{ movie!.original_language }} </em>
+      </h5>
+      <p>
+        {{ movie!.overview }}
+      </p>
+    </mat-card-content>
 
-  <mat-card-footer *ngIf="cast">
-    <small>
-      {{ cast!.join(", ") }}
-    </small>
-  </mat-card-footer>
-</mat-card>
+    <mat-card-footer *ngIf="cast">
+      <small>
+        {{ cast!.join(", ") }}
+      </small>
+    </mat-card-footer>
+  </mat-card>
+</div>
