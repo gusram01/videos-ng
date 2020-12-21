@@ -5,7 +5,7 @@ import { MoviesService } from '../../services/movies.service';
 import { MovieDetailResponse } from '../../models/movieDetailsResponse';
 import { zip } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { StoreService } from '../../services/store.service';
+import { Movies } from '../../models/movieResponse';
 
 @Component({
   selector: 'app-detail',
@@ -15,22 +15,19 @@ import { StoreService } from '../../services/store.service';
 export class DetailComponent implements OnInit {
   faTimes = faTimes;
   loading = true;
-  movie: MovieDetailResponse | undefined;
+  detailsMovie: Partial<Movies> | undefined;
   cast: string[] | undefined;
 
   constructor(
     public detailRef: MatDialogRef<DetailComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { id: string },
+    @Inject(MAT_DIALOG_DATA) public movie: Partial<Movies>,
     private moviesService: MoviesService
   ) {
-    zip(
-      this.moviesService.findById(this.data.id.toString()),
-      this.moviesService.findCastById(this.data.id.toString())
-    )
-      .pipe(map(([details, cast]) => ({ details, cast })))
-      .subscribe((data) => {
-        this.movie = data.details;
-        this.cast = data.cast;
+    this.detailsMovie = movie;
+    this.moviesService
+      .findCastById(this.movie.id!.toString())
+      .subscribe((cast) => {
+        this.cast = cast;
         this.loading = false;
       });
   }

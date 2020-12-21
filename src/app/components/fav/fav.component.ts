@@ -1,37 +1,33 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Users } from '../../models/users';
-import { StoreService } from '../../services/store.service';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Movies } from '../../models/movieResponse';
+import { FavsService } from '../../services/favs.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-fav',
   templateUrl: './fav.component.html',
   styleUrls: ['./fav.component.css'],
 })
-export class FavComponent implements OnInit {
-  @Input() id: string | undefined;
-  movies: string[];
-  fav = false;
+export class FavComponent implements OnInit, OnDestroy {
+  @Input() movie: Partial<Movies> | undefined;
+  subs: Subscription;
+  fav: boolean = false;
 
-  constructor(private storeService: StoreService) {
-    this.movies = this.storeMovies();
+  constructor(private favsService: FavsService) {
+    this.subs = this.favsService.fav$.subscribe((data) => {
+      this.fav = data;
+    });
+  }
+  ngOnInit() {
+    this.favsService.initializesFav(this.movie!.id!);
   }
 
-  ngOnInit(): void {
-    this.fav = this.movies.includes(this.id!);
-  }
-
-  storeMovies(): string[] {
-    const data = sessionStorage.getItem('ngMov13User');
-    if (!data) {
-      return [];
-    }
-    const user: Users = JSON.parse(data);
-    return user.movies;
+  ngOnDestroy() {
+    this.subs.unsubscribe();
+    console.log('uns', this.movie!.id);
   }
 
   change() {
-    this.storeService.saveMovie(this.id!.toString());
-    this.movies = this.storeMovies();
-    this.fav = this.movies.includes(this.id!);
+    this.favsService.changeFav(this.movie!);
   }
 }

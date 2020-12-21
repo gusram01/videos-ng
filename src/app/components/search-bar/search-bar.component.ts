@@ -1,6 +1,6 @@
 import { Component, EventEmitter, HostListener, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StoreService } from '../../services/store.service';
+import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,7 +16,7 @@ export class SearchBarComponent {
 
   constructor(
     private fb: FormBuilder,
-    private store: StoreService,
+    private login: LoginService,
     private router: Router
   ) {
     this.search = this.fb.group({
@@ -39,7 +39,7 @@ export class SearchBarComponent {
   }
 
   logout() {
-    this.store.clean();
+    this.login.clean();
     this.router.navigateByUrl('/');
   }
 }

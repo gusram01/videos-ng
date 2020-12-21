@@ -7,8 +7,7 @@ export interface TheMovieDBResponse {
 
 export interface Movies {
   adult: boolean;
-  // backdrop_path: null | string;
-  backdrop_path: string;
+  backdrop_path: null | undefined | string;
   genre_ids: number[];
   id: number;
   original_language: OriginalLanguage;

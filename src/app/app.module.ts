@@ -20,6 +20,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { PosterPipe } from './pipes/poster.pipe';
 import { BackdropPipe } from './pipes/backdrop.pipe';
 import { FavComponent } from './components/fav/fav.component';
+import { FavsComponent } from './pages/favs/favs.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { FavComponent } from './components/fav/fav.component';
     PosterPipe,
     BackdropPipe,
     FavComponent,
+    FavsComponent,
   ],
   imports: [
     BrowserModule,

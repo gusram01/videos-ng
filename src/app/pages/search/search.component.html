@@ -1,6 +1,19 @@
 <div class="search__container">
   <app-search-bar (sendTitle)="getMovies($event)"></app-search-bar>
+  <mat-paginator
+    *ngIf="movies.length > 0"
+    [length]="length"
+    [pageSize]="pageSize"
+    (page)="changePage($event)"
+    class="search__paginator"
+  ></mat-paginator>
+
   <div class="movies__container" *ngIf="movies">
-    <app-card [movie]="movie" *ngFor="let movie of movies"> </app-card>
+    <app-card
+      *ngFor="let movie of movies"
+      [movie]="movie"
+      (selectedMovie)="openDialog($event)"
+    >
+    </app-card>
   </div>
 </div>

@@ -11,8 +11,8 @@
 
   <mat-card *ngIf="movie">
     <mat-card-header>
-      <div mat-card-avatar class="detail__avatar">
-        <app-fav [id]="movie!.id.toString()"></app-fav>
+      <div mat-card-avatar>
+        <app-fav [movie]="movie"></app-fav>
       </div>
       <mat-card-title>
         {{ movie!.title }}

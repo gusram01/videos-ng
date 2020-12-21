@@ -7,7 +7,7 @@ import { Subject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class StoreService {
+export class LoginService {
   constructor(private router: Router) {}
 
   clean() {
@@ -48,26 +48,5 @@ export class StoreService {
     }
 
     this.router.navigateByUrl('/search');
-  }
-
-  saveMovie(idMovie: string) {
-    const data = sessionStorage.getItem('ngMov13User');
-    if (!data) {
-      return;
-    }
-    const actualUser: Users = JSON.parse(data);
-    const flag = actualUser.movies.findIndex(
-      (item: string) => item === idMovie
-    );
-    if (flag < 0) {
-      actualUser.movies.push(idMovie);
-    } else {
-      actualUser.movies.splice(flag, 1);
-    }
-    const users = this.getUsers();
-    const actual = users.findIndex((item: Users) => item.id === actualUser.id);
-    users.splice(actual, 1, actualUser);
-    localStorage.setItem('MyNgMov13St0re', JSON.stringify(users));
-    sessionStorage.setItem('ngMov13User', JSON.stringify(actualUser));
   }
 }

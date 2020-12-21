@@ -7,10 +7,20 @@
   padding: 2rem 1rem 3rem;
 }
 .movies__container {
+  -moz-column-count: 3;
   column-count: 3;
+  -moz-column-width: 250px;
   column-width: 250px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
   padding: 1rem 0;
+}
+.search__paginator {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0.5rem;
+  width: 100%;
+  margin: 1rem;
+  z-index: 200;
 }

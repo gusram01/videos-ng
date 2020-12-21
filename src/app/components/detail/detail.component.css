@@ -14,9 +14,7 @@
 .detail__spinner {
   margin: 10px auto;
 }
-.detail__avatar {
-  cursor: pointer;
-}
+
 .detail__fav {
   -webkit-user-select: none;
   -moz-user-select: none;

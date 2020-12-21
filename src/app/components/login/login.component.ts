@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StoreService } from '../../services/store.service';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +11,7 @@ export class LoginComponent {
   login: FormGroup;
   hide = true;
 
-  constructor(private fb: FormBuilder, private store: StoreService) {
+  constructor(private fb: FormBuilder, private store: LoginService) {
     this.login = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],

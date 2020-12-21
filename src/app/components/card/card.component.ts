@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Movies } from '../../models/movieResponse';
 import { DetailComponent } from '../detail/detail.component';
@@ -9,15 +9,14 @@ import { DetailComponent } from '../detail/detail.component';
   styleUrls: ['./card.component.css'],
 })
 export class CardComponent implements OnInit {
-  @Input() movie: Movies | undefined;
+  @Input() movie: Partial<Movies> | undefined;
+  @Output() selectedMovie: EventEmitter<Partial<Movies>> = new EventEmitter();
 
-  constructor(private details: MatDialog) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
-  openDetails(id: number) {
-    const detailsRef = this.details.open(DetailComponent, {
-      data: { id },
-    });
+  emitId(movie: Partial<Movies>) {
+    this.selectedMovie.emit(movie);
   }
 }

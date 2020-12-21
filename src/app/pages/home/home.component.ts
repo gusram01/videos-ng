@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StoreService } from '../../services/store.service';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +7,7 @@ import { StoreService } from '../../services/store.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private store: StoreService) {
+  constructor(private store: LoginService) {
     store.clean();
   }
 
