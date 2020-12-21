@@ -1,5 +1,31 @@
 <div class="search__container">
-  <app-search-bar (sendTitle)="getMovies($event)"></app-search-bar>
+  <!--  SearchBar  -->
+  <div class="search-bar__container mat-elevation-z4">
+    <form [formGroup]="search" (ngSubmit)="onSubmit()" class="search-bar__form">
+      <mat-form-field appearance="outline">
+        <mat-label>Search movie</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Enter your search"
+          formControlName="title"
+        />
+        <button mat-icon-button matSuffix>
+          <mat-icon>search</mat-icon>
+        </button>
+        <mat-error>This field with at least 3 characters</mat-error>
+      </mat-form-field>
+    </form>
+
+    <!--  SearchBar action buttons  -->
+    <div class="search-bar__actions">
+      <button mat-button (click)="cleanScreen()">Clear</button>
+      <button mat-button (click)="favs()">Favorites</button>
+      <button mat-button (click)="logout()">Logout</button>
+    </div>
+  </div>
+
+  <!--  Paginator  -->
   <mat-paginator
     *ngIf="movies.length > 0"
     [length]="length"
@@ -8,7 +34,9 @@
     class="search__paginator"
   ></mat-paginator>
 
+  <!--  Movies-container  -->
   <div class="movies__container" *ngIf="movies">
+    <!--  Movie Card  -->
     <app-card
       *ngFor="let movie of movies"
       [movie]="movie"
