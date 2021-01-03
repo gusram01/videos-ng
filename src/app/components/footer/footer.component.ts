@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
+import {
+  faTwitter,
+  faGithub,
+  faLinkedin,
+} from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-footer',
@@ -9,7 +13,12 @@ import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
 export class FooterComponent implements OnInit {
   faTwitter = faTwitter;
   faGithub = faGithub;
+  faLinkedin = faLinkedin;
   legend: string;
+  urlTwit = 'https://twitter.com/GusGusdev';
+  urlGit = 'https://github.com/gusram01';
+  urlLink = 'https://www.linkedin.com/in/gustavo-cesar-ramirez/';
+  urlRepo = 'https://github.com/gusram01/videos-ng.git';
 
   constructor() {
     const year = new Date().getFullYear();

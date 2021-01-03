@@ -4,7 +4,6 @@ import { Movies } from '../../models/movieResponse';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { DetailComponent } from '../../components/detail/detail.component';
-import { FavsService } from '../../services/favs.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { EmptyFavsComponent } from '../../components/empty-favs/empty-favs.component';
 import { LoginService } from '../../services/login.service';
@@ -21,8 +20,9 @@ export class SearchComponent implements OnInit {
   movies: Partial<Movies>[] = [];
   pageSize: number | undefined;
   pageIndex: number | undefined;
-  length: number | undefined;
+  arrLength: number | undefined;
   actualSearch: string | undefined;
+  loading = false;
 
   constructor(
     private movieService: MoviesService,
@@ -40,22 +40,26 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {}
 
   getMovies(title: string) {
+    this.loading = true;
     this.movieService.find(title).subscribe((data) => {
       this.actualSearch = title;
       this.movies = data.results;
       this.pageSize = data.results.length;
       this.pageIndex = data.page;
-      this.length = data.total_results;
+      this.arrLength = data.total_results;
+      this.loading = false;
     });
   }
 
   changePage(event: PageEvent) {
+    this.loading = true;
     this.movieService
       .find(this.actualSearch!, event.pageIndex + 1)
       .subscribe((data) => {
         this.movies = data.results;
         this.pageIndex = data.page;
-        this.length = data.total_results;
+        this.arrLength = data.total_results;
+        this.loading = false;
       });
   }
 
@@ -65,13 +69,18 @@ export class SearchComponent implements OnInit {
 
   cleanScreen() {
     this.movies = [];
-    // this.search.controls.title.setValue('');
     this.search.reset();
     this.search.markAsPristine();
-    console.log(this.search);
+    this.pageSize = undefined;
+    this.pageIndex = undefined;
+    this.arrLength = undefined;
+    this.actualSearch = undefined;
   }
 
   onSubmit() {
+    if (this.loading) {
+      return;
+    }
     if (this.search.pristine || this.search.invalid) {
       return;
     }

@@ -22,6 +22,7 @@ import { FavComponent } from './components/fav/fav.component';
 import { FavsComponent } from './pages/favs/favs.component';
 import { EmptyFavsComponent } from './components/empty-favs/empty-favs.component';
 import { BtnThemeComponent } from './components/btn-theme/btn-theme.component';
+import { SecuredPipe } from './pipes/secured.pipe';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { BtnThemeComponent } from './components/btn-theme/btn-theme.component';
     FavsComponent,
     EmptyFavsComponent,
     BtnThemeComponent,
+    SecuredPipe,
   ],
   imports: [
     BrowserModule,

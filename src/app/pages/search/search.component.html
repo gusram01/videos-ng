@@ -28,13 +28,14 @@
   <!--  Paginator  -->
   <mat-paginator
     *ngIf="movies.length > 0"
-    [length]="length"
+    [length]="arrLength"
     [pageSize]="pageSize"
     (page)="changePage($event)"
     class="search__paginator"
   ></mat-paginator>
 
   <!--  Movies-container  -->
+  <p *ngIf="arrLength! < 1">No items Found ...</p>
   <div class="movies__container" *ngIf="movies">
     <!--  Movie Card  -->
     <app-card

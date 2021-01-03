@@ -6,8 +6,17 @@
     <a
       mat-icon-button
       color="primary"
-      class="link footer__link"
-      href="https://twitter.com/GusGusdev"
+      class="link icon"
+      [href]="urlLink | secured"
+      target="_blank"
+    >
+      <fa-icon [icon]="faLinkedin"> </fa-icon>
+    </a>
+    <a
+      mat-icon-button
+      color="primary"
+      class="link icon"
+      [href]="urlTwit | secured"
       target="_blank"
     >
       <fa-icon [icon]="faTwitter"> </fa-icon>
@@ -15,8 +24,8 @@
     <a
       mat-icon-button
       color="primary"
-      class="link footer__link"
-      href="https://github.com/gusram01"
+      class="link icon"
+      [href]="urlGit | secured"
       target="_blank"
     >
       <fa-icon [icon]="faGithub"> </fa-icon>
@@ -28,27 +37,11 @@
       <a
         mat-button
         class="link footer__link"
-        href="https://github.com/gusram01/videos-ng.git"
+        [href]="urlRepo | secured"
         target="_blank"
       >
-        API-Movies Info
+        Ng-videos
       </a>
     </span>
-    <!-- Wallpaper from
-    <a
-      mat-button
-      class="link link_footer-login"
-      href="https://www.pexels.com/photo/black-and-white-labeled-box-3945313/"
-      target="_blank"
-      >Pexels®</a
-    >
-    by
-    <a
-      mat-button
-      class="link link_footer-login"
-      href="https://www.pexels.com/@cottonbro"
-      target="_blank"
-      >cottonbro</a
-    > -->
   </p>
 </footer>
