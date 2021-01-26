@@ -1,33 +1,21 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
 import { Movies } from '../../../core/models/movieResponse';
-import { FavsService } from '../../../core/services/favs.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-fav',
   templateUrl: './fav.component.html',
   styleUrls: ['./fav.component.css'],
 })
-export class FavComponent implements OnInit, OnDestroy {
+export class FavComponent implements OnInit {
   @Input() movie: Partial<Movies> | undefined;
-  subs: Subscription;
   fav: boolean = false;
 
-  constructor(private favsService: FavsService) {
-    this.subs = this.favsService.fav$.subscribe((data) => {
-      this.fav = data;
-    });
-  }
+  constructor() {}
+
   ngOnInit() {
-    this.favsService.initializesFav(this.movie!.id!);
+    // this.favsService.initializesFav(this.movie!.id!);
   }
 
-  ngOnDestroy() {
-    this.subs.unsubscribe();
-    console.log('uns', this.movie!.id);
-  }
-
-  change() {
-    this.favsService.changeFav(this.movie!);
-  }
+  change() {}
 }
