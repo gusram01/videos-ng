@@ -29,7 +29,7 @@ export class FavsService {
     return user.movies;
   }
 
-  initializesFav(id: number) {
+  initializesFav(id: string) {
     const data = sessionStorage.getItem('ngMov13User');
     if (!data) {
       this._fav = false;

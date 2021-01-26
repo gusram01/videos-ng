@@ -1,4 +1,9 @@
 <div class="home__container">
-  <p>Please login</p>
-  <button (click)="login()">Login with Google</button>
+  <h1>get Info Movies</h1>
+  <app-card [movie]="movie" (selectedMovie)="login()">
+    Log in to find your favorite movie info...
+  </app-card>
+  <button mat-raised-button (click)="login()" color="primary">
+    Login with Google
+  </button>
 </div>

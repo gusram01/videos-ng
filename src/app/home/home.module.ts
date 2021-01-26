@@ -7,10 +7,9 @@ import { MaterialModule } from '../material/material.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
-  declarations: [HomeComponent, LoginComponent],
+  declarations: [HomeComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

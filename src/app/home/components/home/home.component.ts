@@ -9,6 +9,17 @@ import firebase from 'firebase/app';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  get movie() {
+    return {
+      backdrop_path: '7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg',
+      id: '7c185b5e',
+      original_language: 'en',
+      overview: 'After the devastating events of Avengers: Infinity',
+      title: 'Avengers: Endgame',
+      vote_average: 8.3,
+    };
+  }
+
   get authFlag() {
     return this.authFB.user;
   }
