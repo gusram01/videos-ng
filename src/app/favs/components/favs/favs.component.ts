@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
-import { Movies } from '../../models/movieResponse';
-import { Cast } from '../../models/movieCreditsResponse';
-import { FavsService } from '../../services/favs.service';
-import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
+
+import { Movies } from '../../../core/models/movieResponse';
+import { Cast } from '../../../core/models/movieCreditsResponse';
+import { FavsService } from '../../../core/services/favs.service';
+import { LoginService } from '../../../core/services/login.service';
 
 @Component({
   selector: 'app-favs',

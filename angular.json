@@ -121,6 +121,10 @@
               "devServerTarget": "ng-videos:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }

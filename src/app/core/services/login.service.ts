@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Users } from '../models/users';
-import { Movies } from '../models/movieResponse';
-import { Subject, Observable } from 'rxjs';
+// import { Movies } from '../models/movieResponse';
+// import { Subject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

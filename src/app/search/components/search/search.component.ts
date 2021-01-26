@@ -1,13 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { MoviesService } from '../../services/movies.service';
-import { Movies } from '../../models/movieResponse';
-import { PageEvent } from '@angular/material/paginator';
-import { MatDialog } from '@angular/material/dialog';
-import { DetailComponent } from '../../components/detail/detail.component';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { EmptyFavsComponent } from '../../components/empty-favs/empty-favs.component';
-import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { AngularFireAuth } from '@angular/fire/auth';
+
+import { MoviesService } from '../../../core/services/movies.service';
+import { Movies } from '../../../core/models/movieResponse';
+import { LoginService } from '../../../core/services/login.service';
+
+import { DetailComponent } from '../../../shared/components/detail/detail.component';
+
+import { EmptyFavsComponent } from '../../components/empty-favs/empty-favs.component';
 
 @Component({
   selector: 'app-search',
@@ -25,6 +29,7 @@ export class SearchComponent implements OnInit {
   loading = false;
 
   constructor(
+    private authFB: AngularFireAuth,
     private movieService: MoviesService,
     private emptyFavs: MatDialog,
     private details: MatDialog,
@@ -101,7 +106,8 @@ export class SearchComponent implements OnInit {
   }
 
   logout() {
-    this.login.clean();
-    this.router.navigateByUrl('/');
+    this.authFB.signOut().then(() => {
+      this.router.navigateByUrl('/');
+    });
   }
 }

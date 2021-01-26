@@ -1,25 +1,33 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { SearchComponent } from './pages/search/search.component';
-import { AuthGuard } from './guards/auth.guard';
-import { FavsComponent } from './pages/favs/favs.component';
-import { FavsGuard } from './guards/favs.guard';
+import {
+  AngularFireAuthGuard,
+  redirectLoggedInTo,
+  redirectUnauthorizedTo,
+} from '@angular/fire/auth-guard';
+
+const redirectUnauth = () => redirectUnauthorizedTo(['/']);
+const redirectLogged = () => redirectLoggedInTo(['/search']);
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectLogged },
+    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
   {
     path: 'search',
-    canActivate: [AuthGuard],
-    component: SearchComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauth },
+    loadChildren: () =>
+      import('./search/search.module').then((m) => m.SearchModule),
   },
   {
     path: 'favs',
-    canActivate: [AuthGuard, FavsGuard],
-    component: FavsComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauth },
+    loadChildren: () => import('./favs/favs.module').then((m) => m.FavsModule),
   },
   {
     path: '**',

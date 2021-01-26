@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Movies } from '../../models/movieResponse';
-import { DetailComponent } from '../detail/detail.component';
+// import { MatDialog } from '@angular/material/dialog';
+import { Movies } from '../../../core/models/movieResponse';
+// import { DetailComponent } from '../detail/detail.component';
 
 @Component({
   selector: 'app-card',

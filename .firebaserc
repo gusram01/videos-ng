@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ng-videos": {
+      "hosting": {
+        "ng-videos": [
+          "ng-videos"
+        ]
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Movies } from '../../models/movieResponse';
-import { FavsService } from '../../services/favs.service';
+import { Movies } from '../../../core/models/movieResponse';
+import { FavsService } from '../../../core/services/favs.service';
 import { Subscription } from 'rxjs';
 
 @Component({

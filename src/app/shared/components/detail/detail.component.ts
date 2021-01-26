@@ -1,11 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MoviesService } from '../../services/movies.service';
-import { MovieDetailResponse } from '../../models/movieDetailsResponse';
-import { zip } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Movies } from '../../models/movieResponse';
+import { MoviesService } from '../../../core/services/movies.service';
+// import { MovieDetailResponse } from '../../../core/models/movieDetailsResponse';
+// import { zip } from 'rxjs';
+// import { map } from 'rxjs/operators';
+import { Movies } from '../../../core/models/movieResponse';
 
 @Component({
   selector: 'app-detail',
