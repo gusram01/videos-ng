@@ -4,7 +4,7 @@ import { FavsComponent } from './components/favs/favs.component';
 
 const routes: Routes = [
   {
-    path: 'favs',
+    path: '',
     component: FavsComponent,
   },
 ];

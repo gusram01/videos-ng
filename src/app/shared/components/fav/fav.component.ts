@@ -1,13 +1,4 @@
-import {
-  AfterContentInit,
-  AfterViewChecked,
-  AfterViewInit,
-  Component,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
 import { Movies } from '../../../core/models/movieResponse';
 import { RealtimedbService } from '../../../core/services/realtimedb.service';

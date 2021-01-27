@@ -1,24 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
 
+import { RealtimedbService } from '../../../core/services/realtimedb.service';
 import { MoviesService } from '../../../core/services/movies.service';
 import { Movies } from '../../../core/models/movieResponse';
-import { LoginService } from '../../../core/services/login.service';
 
 import { DetailComponent } from '../../../shared/components/detail/detail.component';
 
 import { EmptyFavsComponent } from '../../components/empty-favs/empty-favs.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnDestroy {
   search: FormGroup;
 
   movies: Partial<Movies>[] = [];
@@ -28,21 +29,31 @@ export class SearchComponent implements OnInit {
   actualSearch: string | undefined;
   loading = false;
 
+  private _storedMovies: Partial<Movies>[] | undefined;
+  private _storedMoviesSub$: Subscription;
+
   constructor(
     private authFB: AngularFireAuth,
     private movieService: MoviesService,
     private emptyFavs: MatDialog,
     private details: MatDialog,
     private fb: FormBuilder,
-    private login: LoginService,
-    private router: Router
+    private router: Router,
+    private db: RealtimedbService
   ) {
     this.search = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
     });
+    this.db.onInitService();
+    this._storedMoviesSub$ = this.db.movies.subscribe((data) => {
+      this._storedMovies = data;
+    });
   }
 
-  ngOnInit(): void {}
+  ngOnDestroy() {
+    this.db.killSub$();
+    this._storedMoviesSub$.unsubscribe();
+  }
 
   getMovies(title: string) {
     this.loading = true;
@@ -93,8 +104,7 @@ export class SearchComponent implements OnInit {
   }
 
   favs() {
-    const data = sessionStorage.getItem('ngMov13User');
-    if (!data || JSON.parse(data).movies < 1) {
+    if (!this._storedMovies) {
       const dialog = this.emptyFavs.open(EmptyFavsComponent, {
         minWidth: '220px',
         minHeight: '300px',

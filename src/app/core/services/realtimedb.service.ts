@@ -35,7 +35,6 @@ export class RealtimedbService {
   killSub$() {
     // unsubscribed in onDestroy lifecycle
     this._activeSubs!.unsubscribe();
-    console.log('db unsubscribed');
   }
 
   private init() {
@@ -85,19 +84,15 @@ export class RealtimedbService {
     // if the movie exist in the store is erased otherwise is added
     if (!isStored) {
       this.insertMovie(movie)
-        .then(() => {
-          console.log('ok add');
-        })
+        .then(() => {})
         .catch((err) => {
-          console.log('Please try again later');
+          return false;
         });
     } else {
       this.removeMovie(indexStore as number)
-        .then(() => {
-          console.log('ok del');
-        })
+        .then(() => {})
         .catch((err) => {
-          console.log('Please try again later');
+          return false;
         });
     }
 
