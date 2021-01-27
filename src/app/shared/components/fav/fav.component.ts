@@ -1,4 +1,13 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  AfterContentInit,
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 
 import { Movies } from '../../../core/models/movieResponse';
 import { RealtimedbService } from '../../../core/services/realtimedb.service';
@@ -17,29 +26,18 @@ export class FavComponent implements OnInit, OnDestroy {
   constructor(private db: RealtimedbService) {}
 
   ngOnInit() {
-    // this.favsService.initializesFav(this.movie!.id!);
-    // console.log(this.db.item$);
+    this.db.onInitService();
+    this.db.movies.subscribe((data) => {
+      this.fav = data.findIndex((item) => item.id === this.movie!.id) >= 0;
+    });
   }
 
   ngOnDestroy() {
-    // this.db.finish();
+    this.db.killSub$();
   }
 
   change() {
-    console.log(this.db.updateMovies(this.movie as Partial<Movies>));
-    // const data = this.db.isMovieInStore(this.movie as Partial<Movies>);
-    // console.log(data);
-    // console.log(this.userStored);
-    // this.db.change(this.movie as Partial<Movies>).subscribe(
-    //   (data) => {
-    //     console.log(data);
-    //   },
-    //   (err) => {
-    //     console.log(err);
-    //   },
-    //   () => {
-    //     console.log('unsuscribed');
-    //   }
-    // );
+    const flag = this.db.updateMovies(this.movie as Partial<Movies>);
+    this.fav = flag;
   }
 }

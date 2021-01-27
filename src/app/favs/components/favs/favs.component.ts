@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 
 import { Movies } from '../../../core/models/movieResponse';
 import { Cast } from '../../../core/models/movieCreditsResponse';
-import { FavsService } from '../../../core/services/favs.service';
 import { LoginService } from '../../../core/services/login.service';
 
 @Component({
@@ -17,13 +16,10 @@ export class FavsComponent {
   cast: Cast[] = [];
 
   constructor(
-    private favsService: FavsService,
     private location: Location,
     private login: LoginService,
     private router: Router
-  ) {
-    this.movies = this.favsService.storedData();
-  }
+  ) {}
 
   back() {
     this.location.back();
@@ -32,11 +28,5 @@ export class FavsComponent {
     this.login.clean();
     this.router.navigateByUrl('/');
   }
-  deleteFav(movie: Partial<Movies>) {
-    this.favsService.changeFav(movie);
-    this.movies = this.favsService.storedData();
-    if (this.movies && this.movies.length === 0) {
-      this.location.back();
-    }
-  }
+  deleteFav(movie: Partial<Movies>) {}
 }
